@@ -1,0 +1,54 @@
+@Component
+
+Definition: @Component is a class-level annotation that indicates that a class is a Spring-managed component.
+It is used for automatic component scanning and is typically applied to classes that are part of the application’s business logic,
+such as services, repositories, and controllers.
+
+Usage: When a class is annotated with @Component, Spring automatically detects it during component scanning and registers
+it as a bean in the application context. This means that instances of the class will be created and managed by Spring.
+
+Subclassing: There are specialized versions of @Component, such as @Service, @Repository, and @Controller,
+which indicate the role of the bean in the application. These annotations are semantically similar to @Component,
+but they provide additional clarity and may have some extra behavior (like exception translation for @Repository).
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+@Bean
+
+Definition: @Bean is a method-level annotation that indicates that a method produces a bean to be managed by the Spring container.
+It is used inside a @Configuration class to explicitly declare a bean.
+
+Usage: When you annotate a method with @Bean, Spring will call this method to obtain the instance of the bean,
+and the return value of the method will be registered as a bean in the application context.
+This allows for more explicit configuration of the bean (e.g., setting properties or using third-party libraries).
+
+Flexibility: Using @Bean is useful when you need to configure a bean in a specific way or when the class does not
+have the @Component annotation and cannot be detected through component scanning.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+When to Use Which
+
+    Use @Component when you want to let Spring automatically detect and manage your classes,
+    especially when building large applications where many components are involved.
+
+    Use @Bean when you want more explicit control over the creation and configuration of a bean,
+    particularly when you need to set up complex objects or use third-party libraries that do not use Spring annotations.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Conclusion
+
+Both @Component and @Bean are essential tools for creating and managing beans in a Spring application.
+Understanding their differences helps you choose the right approach based on your specific requirements and design preferences.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Key Differences
+Feature	                @Component	                                            @Bean
+Level	                Class-level annotation	                                Method-level annotation
+Purpose	                Used for auto-detection of classes as beans	            Used to explicitly declare a bean and its configuration
+Context	                Can be used on any class to make it a bean	            Must be used within a @Configuration class
+Component Scanning	    Automatically registered during component scanning	    Explicitly declared; not automatically scanned
+Configuration Control	Less control over the instantiation process	            Full control over how the bean is created
+Specialization	        Specialized variants like @Service, @Repository, etc.	No specialized versions; every bean is defined at the method level
